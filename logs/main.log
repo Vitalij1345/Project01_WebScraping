@@ -1,0 +1,1 @@
+2024-01-03 19:47:23 [ERROR] - Error during scraping: 'WebDriver' object has no attribute 'find_element_by_css_selector'

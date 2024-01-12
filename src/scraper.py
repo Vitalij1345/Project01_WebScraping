@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 def extract_job_details(driver):
+    global statistics_element
     job_data = {}
 
     try:
@@ -128,3 +129,4 @@ def scrape_all_jobs(url):
 if __name__ == "__main__":
     url = config['SCRAPER']['URL']
     scrape_all_jobs(url)
+

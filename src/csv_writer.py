@@ -13,7 +13,8 @@ def save_to_csv(data, job_urls):
         for job_data, job_url in zip(data, job_urls):
             job_data['Job URL'] = job_url
             # Encode non-ASCII characters to prevent UnicodeEncodeError
-            encoded_data = {k: v.encode('utf-8').decode('utf-8', 'ignore') if isinstance(v, str) else v for k, v in job_data.items()}
+            encoded_data = {k: v.encode('utf-8').decode('utf-8', 'ignore') if isinstance(v, str) else v
+                            for k, v in job_data.items()}
             writer.writerow(encoded_data)
 
 

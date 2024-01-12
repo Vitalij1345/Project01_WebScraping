@@ -36,7 +36,8 @@ def extract_job_details(driver):
 
         # Extract job location
         try:
-            location_element = driver.find_element(By.CSS_SELECTOR, 'div#jobad_location span[itemprop="addressLocality"]')
+            location_element = driver.find_element(By.CSS_SELECTOR,
+                                                   'div#jobad_location span[itemprop="addressLocality"]')
             job_data['Location'] = location_element.text
             print("Location:", job_data['Location'])
         except NoSuchElementException:

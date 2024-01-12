@@ -1,5 +1,6 @@
 import logging
 
+
 def configure_logging(log_level='INFO'):
     # Clear existing loggers and handlers
     for handler in logging.root.handlers[:]:
@@ -7,9 +8,11 @@ def configure_logging(log_level='INFO'):
 
     # Configure logging if not already configured
     if not logging.getLogger().hasHandlers():
-        logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s', filename='../main.log', filemode='w')
+        logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s',
+                            filename='../main.log', filemode='w')
     else:
         logging.debug("Logging is already configured. Skipping.")
+
 
 # Call configure_logging once at the beginning of your script
 configure_logging()

@@ -1,1 +1,52 @@
 2024-01-03 19:47:23 [ERROR] - Error during scraping: 'WebDriver' object has no attribute 'find_element_by_css_selector'
+2024-01-11 20:47:03 [ERROR] - Error during scraping: 'WebDriver' object has no attribute 'find_element_by_css_selector'
+2024-01-11 20:49:25 [ERROR] - Error finding element: Message: no such element: Unable to locate element: {"method":"css selector","selector":".job-title"}
+  (Session info: chrome=120.0.6099.216); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF69AB82142+3514994]
+	(No symbol) [0x00007FF69A7A0CE2]
+	(No symbol) [0x00007FF69A6476AA]
+	(No symbol) [0x00007FF69A691860]
+	(No symbol) [0x00007FF69A69197C]
+	(No symbol) [0x00007FF69A6D4EE7]
+	(No symbol) [0x00007FF69A6B602F]
+	(No symbol) [0x00007FF69A6D28F6]
+	(No symbol) [0x00007FF69A6B5D93]
+	(No symbol) [0x00007FF69A684BDC]
+	(No symbol) [0x00007FF69A685C64]
+	GetHandleVerifier [0x00007FF69ABAE16B+3695259]
+	GetHandleVerifier [0x00007FF69AC06737+4057191]
+	GetHandleVerifier [0x00007FF69ABFE4E3+4023827]
+	GetHandleVerifier [0x00007FF69A8D04F9+689705]
+	(No symbol) [0x00007FF69A7AC048]
+	(No symbol) [0x00007FF69A7A8044]
+	(No symbol) [0x00007FF69A7A81C9]
+	(No symbol) [0x00007FF69A7988C4]
+	BaseThreadInitThunk [0x00007FFB60D17344+20]
+	RtlUserThreadStart [0x00007FFB619826B1+33]
+
+2024-01-11 20:59:43 [ERROR] - Error finding element: Message: no such element: Unable to locate element: {"method":"css selector","selector":".job-title"}
+  (Session info: chrome=120.0.6099.216); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF69AB82142+3514994]
+	(No symbol) [0x00007FF69A7A0CE2]
+	(No symbol) [0x00007FF69A6476AA]
+	(No symbol) [0x00007FF69A691860]
+	(No symbol) [0x00007FF69A69197C]
+	(No symbol) [0x00007FF69A6D4EE7]
+	(No symbol) [0x00007FF69A6B602F]
+	(No symbol) [0x00007FF69A6D28F6]
+	(No symbol) [0x00007FF69A6B5D93]
+	(No symbol) [0x00007FF69A684BDC]
+	(No symbol) [0x00007FF69A685C64]
+	GetHandleVerifier [0x00007FF69ABAE16B+3695259]
+	GetHandleVerifier [0x00007FF69AC06737+4057191]
+	GetHandleVerifier [0x00007FF69ABFE4E3+4023827]
+	GetHandleVerifier [0x00007FF69A8D04F9+689705]
+	(No symbol) [0x00007FF69A7AC048]
+	(No symbol) [0x00007FF69A7A8044]
+	(No symbol) [0x00007FF69A7A81C9]
+	(No symbol) [0x00007FF69A7988C4]
+	BaseThreadInitThunk [0x00007FFB60D17344+20]
+	RtlUserThreadStart [0x00007FFB619826B1+33]
+

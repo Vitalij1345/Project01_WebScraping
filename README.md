@@ -1,0 +1,1 @@
+Run scraper.py code and it will scrape first page throught navigating job list and extracting data from it

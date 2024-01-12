@@ -14,49 +14,40 @@ logger = logging.getLogger(__name__)
 
 
 def extract_job_details(driver):
-    job_data = {}
-
+    global statistics_element
     try:
-        # Extract job title
-        try:
-            title_element = driver.find_element(By.CSS_SELECTOR, 'h1.heading1[itemprop="title"]')
-            job_data['Job Title'] = title_element.text
-            print("Job Title:", job_data['Job Title'])
-        except NoSuchElementException:
-            job_data['Job Title'] = "Job title not available."
-
         # Extract salary (if available)
         try:
             salary_element = driver.find_element(By.CSS_SELECTOR, 'span.salary_text')
-            job_data['Salary'] = salary_element.text
-            print("Salary:", job_data['Salary'])
+            salary = salary_element.text
+            print("Salary:", salary)
         except NoSuchElementException:
-            job_data['Salary'] = "Salary information not available."
+            print("Salary information not available.")
 
         # Extract job location
         try:
             location_element = driver.find_element(By.CSS_SELECTOR, 'div#jobad_location span[itemprop="addressLocality"]')
-            job_data['Location'] = location_element.text
-            print("Location:", job_data['Location'])
+            location = location_element.text
+            print("Location:", location)
         except NoSuchElementException:
-            job_data['Location'] = "Location information not available."
+            print("Location information not available.")
 
         # Extract job statistics (views)
         try:
             statistics_element = driver.find_element(By.CSS_SELECTOR, 'div.jobad_stat')
             views_element = statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
-            job_data['Views'] = views_element.text
-            print("Views:", job_data['Views'])
+            views = views_element.text
+            print("Views:", views)
         except NoSuchElementException:
-            job_data['Views'] = "Views information not available."
+            print("Views information not available.")
 
         # Extract job statistics (candidates)
         try:
             candidates_element = statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
-            job_data['Candidates'] = candidates_element.text
-            print("Candidates:", job_data['Candidates'])
+            candidates = candidates_element.text
+            print("Candidates:", candidates)
         except NoSuchElementException:
-            job_data['Candidates'] = "Candidates information not available."
+            print("Candidates information not available.")
 
         # Wait for the job details page to load using an element unique to the details page
         WebDriverWait(driver, 10).until(
@@ -65,13 +56,11 @@ def extract_job_details(driver):
 
         # Extract job details
         job_details_element = driver.find_element(By.CSS_SELECTOR, 'section[itemprop="description"]')
-        job_data['Job Description'] = job_details_element.text
-        print("Job Description:", job_data['Job Description'])
+        job_description = job_details_element.text
+        print("Job Description:", job_description)
 
     except NoSuchElementException as e:
         print(f"Error extracting job details: {str(e)}")
-
-    return job_data
 
 
 def scrape_all_jobs(url):
@@ -92,12 +81,10 @@ def scrape_all_jobs(url):
 
         print("Job listings found:")
         data = []
-        job_urls = []
         for i, job_listing in enumerate(job_listings):
             # Extract basic information from the job listing
             job_url_element = job_listing.find_element(By.CSS_SELECTOR, 'a.list_a')
             job_url = job_url_element.get_attribute("href")
-            job_urls.append(job_url)
 
             # Navigate to the job details page using the job URL
             print(f"Navigating to the job details page: {job_url}")
@@ -115,11 +102,11 @@ def scrape_all_jobs(url):
             driver.switch_to.window(driver.window_handles[0])
             print("--------------------------------------------------------------------------------------------------")
 
-        return data, job_urls  # Return both data and job URLs
+        return data  # Return the extracted data
 
     except Exception as e:
         print(f"Error scraping job listings: {str(e)}")
-        return None, None  # Return None in case of an error
+        return None  # Return None in case of an error
 
     finally:
         driver.quit()

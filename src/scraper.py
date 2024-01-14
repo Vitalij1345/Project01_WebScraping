@@ -46,20 +46,25 @@ def extract_job_details(driver):
 
         # Extract job statistics (views)
         try:
-            statistics_element = driver.find_element(By.CSS_SELECTOR, 'div.jobad_stat')
-            views_element = statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
+            views_statistics_element = driver.find_element(By.XPATH,
+                                                           '//div[contains(@class, "jobad_stat") and contains(string(), "peržiūrėjo")]')
+            views_element = views_statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
             job_data['Views'] = views_element.text
             print("Views:", job_data['Views'])
         except NoSuchElementException:
-            job_data['Views'] = "Views information not available."
+            job_data['Views'] = "No data"
+            print("No data.")
 
         # Extract job statistics (candidates)
         try:
-            candidates_element = statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
+            candidates_statistics_element = driver.find_element(By.XPATH,
+                                                                '//div[contains(@class, "jobad_stat") and contains(string(), "kandidatavo")]')
+            candidates_element = candidates_statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
             job_data['Candidates'] = candidates_element.text
             print("Candidates:", job_data['Candidates'])
         except NoSuchElementException:
-            job_data['Candidates'] = "Candidates information not available."
+            job_data['Candidates'] = "No data"
+            print("No data.")
 
         # Wait for the job details page to load using an element unique to the details page
         WebDriverWait(driver, 10).until(
@@ -73,6 +78,7 @@ def extract_job_details(driver):
 
     except NoSuchElementException as e:
         print(f"Error extracting job details: {str(e)}")
+        logger.error(f"Error extracting job details: {str(e)}")
 
     return job_data
 

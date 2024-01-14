@@ -12,11 +12,12 @@ config.read('config.ini')
 logging.basicConfig(filename='../main.log', level=config['SCRAPER']['LOGGING_LEVEL'])
 logger = logging.getLogger(__name__)
 
+statistics_element = None
+
 
 def extract_job_details(driver):
     global statistics_element
     job_data = {}
-
     try:
         # Extract job title
         try:
@@ -76,9 +77,9 @@ def extract_job_details(driver):
     return job_data
 
 
-def scrape_all_jobs(url):
+def scrape_all_jobs(url_jobs):
     driver = webdriver.Chrome()
-    driver.get(url)
+    driver.get(url_jobs)
 
     try:
         # Wait for job listings to be present
@@ -130,4 +131,3 @@ def scrape_all_jobs(url):
 if __name__ == "__main__":
     url = config['SCRAPER']['URL']
     scrape_all_jobs(url)
-

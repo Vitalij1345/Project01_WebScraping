@@ -18,6 +18,8 @@ def configure_logging(log_level='INFO'):
 configure_logging()
 
 if __name__ == "__main__":
-    # Rest of your script...
+    # Log level list
     logging.info("This is an info message.")
+    logging.warning("This is a warning message.")
     logging.error("This is an error message.")
+    logging.critical("This is a critical message.")

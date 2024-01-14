@@ -1,7 +1,6 @@
-from scraper import scrape_all_jobs, extract_job_details
+from scraper import scrape_all_jobs
 from utils import configure_logging
 import csv
-import logging
 
 
 def save_to_csv(data, job_urls):
@@ -12,7 +11,7 @@ def save_to_csv(data, job_urls):
         writer.writeheader()
         for job_data, job_url in zip(data, job_urls):
             job_data['Job URL'] = job_url
-            # Encode non-ASCII characters to prevent UnicodeEncodeError
+            # Encode data to prevent UnicodeEncodeError
             encoded_data = {k: v.encode('utf-8').decode('utf-8', 'ignore') if isinstance(v, str) else v
                             for k, v in job_data.items()}
             writer.writerow(encoded_data)
@@ -21,14 +20,6 @@ def save_to_csv(data, job_urls):
 if __name__ == "__main__":
     # Configure logging
     configure_logging('INFO')
-
-    # # Add explicit logging statements
-    # logging.info("Logging initialized.")
-    # try:
-    #     # Introduce an intentional error for testing logging
-    #     raise ValueError("This is a deliberate error for testing logging.")
-    # except Exception as e:
-    #     logging.error(f"Error occurred: {e}")
 
     # Scraping logic
     url = "https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw="

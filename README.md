@@ -11,7 +11,7 @@ It utilizes Selenium for web automation and CSVWriter to save the scraped data t
 
 ### Code structure:
 
-`` ` `
+` ` `
 Project01_WebScraping/
 │
 ├── src/

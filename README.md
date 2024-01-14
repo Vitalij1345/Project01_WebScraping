@@ -39,7 +39,12 @@ Utility functions (e.g., logging configuration)
 ### [config.ini](src/config.ini)
 Configuration file with parameters
 
+<<<<<<< HEAD
 ## [tests](tests)
+=======
+## tests
+
+>>>>>>> 0b5ed5b10ce38b5491a985d3796b17341ee2c256
 Folder containing test files
 
 ### [requirements.txt](requirements.txt)
@@ -57,6 +62,10 @@ File to specify files/folders to be ignored by version control
 ## [backup_files](backup_files)
 Folder to store backup files
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b5ed5b10ce38b5491a985d3796b17341ee2c256
 # Script
 
 - main.py: This script is intended to serve as an entry point for project. When you run main.py, it will configure 

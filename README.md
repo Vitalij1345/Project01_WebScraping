@@ -11,7 +11,7 @@ It utilizes Selenium for web automation and CSVWriter to save the scraped data t
 
 ### Code structure:
 
-` ` `
+``
 Project01_WebScraping/
 │
 ├── src/
@@ -27,7 +27,7 @@ Project01_WebScraping/
 ├── README.md               # Project documentation
 ├── .gitignore              # File to specify files/folders to be ignored by version control
 └── backup_files/           # Folder to store backup files
-` ` `
+``
 
 
 #### Script

@@ -19,12 +19,10 @@ It utilizes Selenium for web automation and CSVWriter to save the scraped data t
   * [csv_writer.py](#csv_writerpy)
   * [utils.py](#utilspy)
   * [config.ini](#configini)
-* [tests](#tests)
 * [requirements.txt](#requirementstxt)
 * [main.log](#mainlog)
 * [README.md](#readmemd)
 * [.gitignore](#gitignore)
-* [backup_files](#backup_files)
 
 ## src
 
@@ -43,9 +41,6 @@ Utility functions (e.g., logging configuration)
 ### [config.ini](src/config.ini)
 Configuration file with parameters
 
-## [tests](tests)
-Folder containing test files
-
 ### [requirements.txt](requirements.txt)
 File listing project dependencies
 
@@ -57,9 +52,6 @@ Project documentation
 
 ### [.gitignore](.gitignore)
 File to specify files/folders to be ignored by version control
-
-## [backup_files](backup_files)
-Folder to store backup files
 
 # Script
 

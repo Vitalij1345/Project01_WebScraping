@@ -19,7 +19,7 @@ def extract_job_details(driver):
     global statistics_element
     job_data = {}
     try:
-        # Extract job title
+        # Extract job title (if available)
         try:
             title_element = driver.find_element(By.CSS_SELECTOR, 'h1.heading1[itemprop="title"]')
             job_data['Job Title'] = title_element.text
@@ -35,19 +35,23 @@ def extract_job_details(driver):
         except NoSuchElementException:
             job_data['Salary'] = "Salary information not available."
 
-        # Extract job location
+        # Extract job location (if available)
         try:
-            location_element = driver.find_element(By.CSS_SELECTOR,
-                                                   'div#jobad_location span[itemprop="addressLocality"]')
-            job_data['Location'] = location_element.text
+            location_element = driver.find_element(By.ID, 'jobad_location')
+            location_text = location_element.text.strip()
+            job_data['Location'] = location_text.split('-')[0].strip()
+            job_data['Company'] = location_text.split('-')[1].strip()
             print("Location:", job_data['Location'])
+            print("Company:", job_data['Company'])
         except NoSuchElementException:
             job_data['Location'] = "Location information not available."
+            job_data['Company'] = "Company information not available."
 
-        # Extract job statistics (views)
+        # Extract job statistics (views) (if available)
         try:
             views_statistics_element = driver.find_element(By.XPATH,
-                                                           '//div[contains(@class, "jobad_stat") and contains(string(), "peržiūrėjo")]')
+                                                           '//div[contains(@class, "jobad_stat") and contains(string('
+                                                           '), "peržiūrėjo")]')
             views_element = views_statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
             job_data['Views'] = views_element.text
             print("Views:", job_data['Views'])
@@ -55,10 +59,11 @@ def extract_job_details(driver):
             job_data['Views'] = "No data"
             print("No data.")
 
-        # Extract job statistics (candidates)
+        # Extract job statistics (candidates) (if available)
         try:
             candidates_statistics_element = driver.find_element(By.XPATH,
-                                                                '//div[contains(@class, "jobad_stat") and contains(string(), "kandidatavo")]')
+                                                                '//div[contains(@class, "jobad_stat") and contains('
+                                                                'string(), "kandidatavo")]')
             candidates_element = candidates_statistics_element.find_element(By.CLASS_NAME, 'jobad_stat_value')
             job_data['Candidates'] = candidates_element.text
             print("Candidates:", job_data['Candidates'])
@@ -85,44 +90,58 @@ def extract_job_details(driver):
 
 def scrape_all_jobs(url_jobs):
     driver = webdriver.Chrome()
-    driver.get(url_jobs)
-
     try:
-        # Wait for job listings to be present
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, 'list_article_rememberable'))
-        )
-
-        # Extract all job listings
-        job_listings = driver.find_elements(By.CLASS_NAME, 'list_article_rememberable')
-
-        if not job_listings:
-            raise Exception("No job listings found on the page.")
-
-        print("Job listings found:")
         data = []
         job_urls = []
-        for i, job_listing in enumerate(job_listings):
-            # Extract basic information from the job listing
-            job_url_element = job_listing.find_element(By.CSS_SELECTOR, 'a.list_a')
-            job_url = job_url_element.get_attribute("href")
-            job_urls.append(job_url)
+        page_number = 1
+        while True:
+            url_jobs = f"{url_jobs}&page={page_number}"
+            driver.get(url_jobs)
 
-            # Navigate to the job details page using the job URL
-            print(f"Navigating to the job details page: {job_url}")
-            driver.execute_script("window.open();")
-            driver.switch_to.window(driver.window_handles[1])
-            driver.get(job_url)
+            # Wait for job listings to be present
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_all_elements_located((By.CLASS_NAME, 'list_article_rememberable')))
 
-            # Extract job details
-            job_data = extract_job_details(driver)
-            if job_data:
-                data.append(job_data)
+            # Extract all job listings
+            job_listings = driver.find_elements(By.CLASS_NAME, 'list_article_rememberable')
 
-            # Close the tab and switch back to the main window
-            driver.close()
-            driver.switch_to.window(driver.window_handles[0])
-            print("--------------------------------------------------------------------------------------------------")
+            if not job_listings:
+                print(f"No job listings found on page {page_number}. Exiting.")
+                break
+            print(f"Job listings found on page {page_number}:")
+
+            for i, job_listing in enumerate(job_listings):
+                # Extract basic information from the job listing
+                job_url_element = job_listing.find_element(By.CSS_SELECTOR, 'a.list_a')
+                job_url = job_url_element.get_attribute("href")
+                job_urls.append(job_url)
+
+                # Navigate to the job details page using the job URL
+                print(f"Navigating to the job details page: {job_url}")
+                driver.execute_script("window.open();")
+                driver.switch_to.window(driver.window_handles[1])
+                driver.get(job_url)
+
+                # Extract job details
+                job_data = extract_job_details(driver)
+                if job_data:
+                    data.append(job_data)
+
+                # Close the tab and switch back to the main window
+                driver.close()
+                driver.switch_to.window(driver.window_handles[0])
+                print("-----------------------------------------------------------------------------------------------")
+
+            # Check for the presence of the "next page" link
+            next_page_xpath = '//a[@class="prev_next" and contains(text(), "»")]'
+            try:
+                # "_" is "next_page_link" it was renamed to get rid of warning
+                _ = driver.find_element(By.XPATH, next_page_xpath)
+            except NoSuchElementException:
+                print(f"No next page found. Exiting.")
+                break
+
+            page_number += 1
 
         return data, job_urls  # Return both data and job URLs
 

@@ -5,7 +5,7 @@ import csv
 
 def save_to_csv(data, job_urls):
     with open('output.csv', 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['Job Title', 'Salary', 'Location', 'Views', 'Candidates', 'Job URL', 'Job Description']
+        fieldnames = ['Job Title', 'Salary', 'Location', 'Company', 'Views', 'Candidates', 'Job URL', 'Job Description']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()

@@ -5,13 +5,13 @@ It utilizes Selenium for web automation and CSVWriter to save the scraped data t
 
 ## FEATURES
 
-- Scrape job listings from [cvbankas.lt](https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw=)
+- Scrape job listings from [**cvbankas.lt**](https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw=)
 - Navigate through job details pages
 - Save scraped data to a CSV file with job URLs
-- Custom Configuration: Easily configure the scraping parameters by updating config.ini. Modify the URL or adjust the 
-wait time according to your preferences. 
-- Flexible Usage: Adapt the web scraping process by updating csv_writer.py with your specific requirements. Customize 
-the script to suit different filters on the **cvbankas.lt** website.
+- Custom Configuration: Easily configure the scraping parameters by updating `config.ini` and `csv_writer.py`. Modify 
+the URL or adjust the wait time according to your preferences. 
+- Flexible Usage: Adapt the web scraping process by updating `config.ini` and `csv_writer.py` with your specific 
+requirements. Customize the script to suit different filters on the [**cvbankas.lt**](https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=) website.
 
 ## CODE STRUCTURE
 

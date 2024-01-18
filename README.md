@@ -22,6 +22,15 @@ requirements. Customize the script to suit different filters on the [**cvbankas.
 - Web Browser Driver: Selenium requires a web browser driver. This project uses the Chrome browser, so make sure to 
 have the ChromeDriver version **71.0.3542.0** executable compatible with your Chrome browser version.
 
+## Usage
+
+1. Clone the repository.
+2. Install dependencies in terminal using `pip install -r requirements.txt`.
+3. Update [config.ini](src/config.ini) with your desired configuration **if needed**.
+4. Update [csv_writer.py](src/csv_writer.py) with your desired configuration **if needed**. 
+5. Run **[main.py](src/main.py)** to start the web scraping process. It initializes the web scraping but does not create the CSV file.
+6. Run **[csv_writer.py](src/csv_writer.py)** to generate the CSV file with extracted data.
+
 ### Configuration
 
 If you want to scrape website [cvbankas.lt](https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=) with different filters make sure to follow instructions.
@@ -43,14 +52,6 @@ file. Locate the following line:
   ```
   Change `'output.csv'` to your preferred filename. This will create a new CSV file with new data, and the old output.csv won't be touched.
 
-## Usage
-
-1. Clone the repository.
-2. Install dependencies in terminal using `pip install -r requirements.txt`.
-3. Update [config.ini](src/config.ini) with your desired configuration **if needed**.
-4. Update [csv_writer.py](src/csv_writer.py) with your desired configuration **if needed**. 
-5. Run **[main.py](src/main.py)** to start the web scraping process. It initializes the web scraping but does not create the CSV file.
-6. Run **[csv_writer.py](src/csv_writer.py)** to generate the CSV file with extracted data. 
 ## CODE STRUCTURE
 
 ### Project01_WebScraping

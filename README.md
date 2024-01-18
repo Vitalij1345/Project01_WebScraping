@@ -8,9 +8,9 @@ It utilizes Selenium for web automation and CSVWriter to save the scraped data t
 - Scrape job listings from [**cvbankas.lt**](https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw=)
 - Navigate through job details pages
 - Save scraped data to a CSV file with job URLs
-- Custom Configuration: Easily configure the scraping parameters by updating `config.ini` and `csv_writer.py`. Modify 
+- Custom Configuration: Easily configure the scraping parameters by updating [config.ini](src/config.ini) and [csv_writer.py](src/csv_writer.py). Modify 
 the URL or adjust the wait time according to your preferences. 
-- Flexible Usage: Adapt the web scraping process by updating `config.ini` and `csv_writer.py` with your specific 
+- Flexible Usage: Adapt the web scraping process by updating [config.ini](src/config.ini) and [csv_writer.py](src/csv_writer.py) with your specific 
 requirements. Customize the script to suit different filters on the [**cvbankas.lt**](https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=) website.
 
 ## CODE STRUCTURE
@@ -38,7 +38,7 @@ Configuration file with parameters
 Script to write scraped data to CSV
 
 #### [output.csv](src/output.csv)
-Script to write scraped data to CSV
+CSV file to store scraped data
 
 #### [main.py](src/main.py)
 Main script for executing the web scraping
@@ -63,11 +63,11 @@ File listing project dependencies
 
 ## SCRIPT
 
-- `main.py`: This script serves as an entry point for the project. Running main.py configures logging using functions 
+- [main.py](src/main.py): This script serves as an entry point for the project. Running main.py configures logging using functions 
 from utils.py and then calls the scrape_all_jobs function from scraper.py, executing the web scraping process.
 
 
-- `csv_writer.py`: This script coordinates web scraping, data extraction, and writing results to a CSV file. When 
+- [csv_writer.py](src/csv_writer.py): This script coordinates web scraping, data extraction, and writing results to a CSV file. When 
 run, it initiates the web scraping process, extracts data from job listings, and saves the data with job URLs to output.csv.
 
 
@@ -84,8 +84,8 @@ have the ChromeDriver version **71.0.3542.0** executable compatible with your Ch
 
 If you want to scrape website [cvbankas.lt](https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=) with different filters 
 make sure to follow instructions.
-- Update the [config.ini](src/config.ini) file to customize the URL, make sure to add extra symbol "%" after or before 
-symbol "%" for _example_: **_UNEDITED_** URL = https://www.cvbankas.lt/?padalinys%5B%5D=85&keyw= 
+- Update the [config.ini](src/config.ini) file to customize the URL, make sure to add extra symbol `%` after or before 
+symbol `%` so it should look like that `%%` for _example_: **_UNEDITED_** URL = https://www.cvbankas.lt/?padalinys%5B%5D=85&keyw= 
 **_EDITED_** URL = https://www.cvbankas.lt/?padalinys%%5B%%5D=85&keyw=.
 - Update the [csv_writer.py](src/csv_writer.py) file to customize the URL, just copy URL of the website and change it with 
 current. 
@@ -96,5 +96,5 @@ current.
 2. Install dependencies using `pip install -r requirements.txt`.
 3. Update [config.ini](src/config.ini) with your desired configuration **if needed**.
 4. Update [csv_writer.py](src/csv_writer.py) with your desired configuration **if needed**. 
-5. Run `main.py` to start the web scraping process. It initializes the web scraping but does not create the CSV file.
-6. Run `csv_writer.py` to generate the CSV file with extracted data. 
+5. Run **[main.py](src/main.py)** to start the web scraping process. It initializes the web scraping but does not create the CSV file.
+6. Run **[csv_writer.py](src/csv_writer.py)** to generate the CSV file with extracted data. 

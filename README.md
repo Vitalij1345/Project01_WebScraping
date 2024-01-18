@@ -13,6 +13,44 @@ the URL or adjust the wait time according to your preferences.
 - Flexible Usage: Adapt the web scraping process by updating [config.ini](src/config.ini) and [csv_writer.py](src/csv_writer.py) with your specific 
 requirements. Customize the script to suit different filters on the [**cvbankas.lt**](https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=) website.
 
+## INSTALLATION
+
+### Requirements
+
+- Python 3.12.0
+- Requirements listed in [requirements.txt](requirements.txt)
+- Web Browser Driver: Selenium requires a web browser driver. This project uses the Chrome browser, so make sure to 
+have the ChromeDriver version **71.0.3542.0** executable compatible with your Chrome browser version.
+
+### Configuration
+
+If you want to scrape website [cvbankas.lt](https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=) with different filters make sure to follow instructions.
+- Update the [config.ini](src/config.ini) file to customize the URL with your preferences, 
+   ```python
+  URL = https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=
+  ```
+  make sure to add extra symbol `%` after or before symbol `%` so it should look like that `%%` for _example_: **_UNEDITED_** URL = https://www.cvbankas.lt/?padalinys%5B%5D=85&keyw= 
+  **_EDITED_** URL = https://www.cvbankas.lt/?padalinys%%5B%%5D=85&keyw=.
+- Update the [csv_writer.py](src/csv_writer.py) file to customize the URL with your preferences, 
+  ```python
+  url = "https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw="
+  ```
+  just copy URL of the website and change it with current.
+- If you want to save CSV data from different URLs without overwriting old data, edit the [csv_writer.py](src/csv_writer.py) 
+file. Locate the following line:
+   ```python
+  with open('output.csv', 'w', newline='', encoding='utf-8') as csvfile:
+  ```
+  Change `'output.csv'` to your preferred filename. This will create a new CSV file with new data, and the old output.csv won't be touched.
+
+## Usage
+
+1. Clone the repository.
+2. Install dependencies in terminal using `pip install -r requirements.txt`.
+3. Update [config.ini](src/config.ini) with your desired configuration **if needed**.
+4. Update [csv_writer.py](src/csv_writer.py) with your desired configuration **if needed**. 
+5. Run **[main.py](src/main.py)** to start the web scraping process. It initializes the web scraping but does not create the CSV file.
+6. Run **[csv_writer.py](src/csv_writer.py)** to generate the CSV file with extracted data. 
 ## CODE STRUCTURE
 
 ### Project01_WebScraping
@@ -63,38 +101,9 @@ File listing project dependencies
 
 ## SCRIPT
 
-- [main.py](src/main.py): This script serves as an entry point for the project. Running main.py configures logging using functions 
-from utils.py and then calls the scrape_all_jobs function from scraper.py, executing the web scraping process.
+- [main.py](src/main.py): This script serves as an entry point for the project. Running main.py configures logging using
+functions from utils.py and then calls the scrape_all_jobs function from scraper.py, executing the web scraping process.
 
 
 - [csv_writer.py](src/csv_writer.py): This script coordinates web scraping, data extraction, and writing results to a CSV file. When 
 run, it initiates the web scraping process, extracts data from job listings, and saves the data with job URLs to output.csv.
-
-
-## INSTALLATION
-
-### Requirements
-
-- Python 3.12.0
-- Requirements listed in [requirements.txt](requirements.txt)
-- Web Browser Driver: Selenium requires a web browser driver. This project uses the Chrome browser, so make sure to 
-have the ChromeDriver version **71.0.3542.0** executable compatible with your Chrome browser version.
-
-### Configuration
-
-If you want to scrape website [cvbankas.lt](https://www.cvbankas.lt/?padalinys%%5B%%5D=88&keyw=) with different filters 
-make sure to follow instructions.
-- Update the [config.ini](src/config.ini) file to customize the URL, make sure to add extra symbol `%` after or before 
-symbol `%` so it should look like that `%%` for _example_: **_UNEDITED_** URL = https://www.cvbankas.lt/?padalinys%5B%5D=85&keyw= 
-**_EDITED_** URL = https://www.cvbankas.lt/?padalinys%%5B%%5D=85&keyw=.
-- Update the [csv_writer.py](src/csv_writer.py) file to customize the URL, just copy URL of the website and change it with 
-current. 
-
-## Usage
-
-1. Clone the repository.
-2. Install dependencies using `pip install -r requirements.txt`.
-3. Update [config.ini](src/config.ini) with your desired configuration **if needed**.
-4. Update [csv_writer.py](src/csv_writer.py) with your desired configuration **if needed**. 
-5. Run **[main.py](src/main.py)** to start the web scraping process. It initializes the web scraping but does not create the CSV file.
-6. Run **[csv_writer.py](src/csv_writer.py)** to generate the CSV file with extracted data. 

@@ -1,6 +1,6 @@
 # WEB SCRAPING PROJECT
 
-This project is a web scraping tool that extracts job listings from [cvbankas.lt](https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw=). 
+This project is a web scraping tool that extracts job listings from **[cvbankas.lt](https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw=)**. 
 It utilizes Selenium for web automation and CSVWriter to save the scraped data to a CSV file.
 
 ## FEATURES
@@ -68,7 +68,7 @@ file. Locate the following line:
 * [README.md](#readmemd)
 * [requirements.txt](#requirementstxt)
 
-### src
+### src folder
 
 #### [config.ini](src/config.ini)
 Configuration file with parameters
@@ -87,6 +87,8 @@ Main script for web scraping
 
 #### [utils.py](src/utils.py)
 Utility functions (e.g., logging configuration)
+
+### Project01_WebScraping folder
 
 #### [.gitignore](.gitignore)
 File to specify files/folders to be ignored by version control

@@ -37,15 +37,20 @@ def extract_job_details(driver):
 
         # Extract job location (if available)
         try:
+            job_data['Location'] = "No data"
+            job_data['Company'] = "No data"
             location_element = driver.find_element(By.ID, 'jobad_location')
             location_text = location_element.text.strip()
-            job_data['Location'] = location_text.split('-')[0].strip()
-            job_data['Company'] = location_text.split('-')[1].strip()
-            print("Location:", job_data['Location'])
-            print("Company:", job_data['Company'])
+            location_parts = location_text.split('-')
+            if len(location_parts) >= 2:
+                job_data['Location'] = location_parts[0].strip()
+                job_data['Company'] = location_parts[1].strip()
+                print("Location:", job_data['Location'])
+                print("Company:", job_data['Company'])
+            else:
+                print("Error: Unable to extract location and company information.")
         except NoSuchElementException:
-            job_data['Location'] = "Location information not available."
-            job_data['Company'] = "Company information not available."
+            print("Error: Unable to find location element.")
 
         # Extract job statistics (views) (if available)
         try:

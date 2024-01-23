@@ -37,8 +37,8 @@ def extract_job_details(driver):
 
         # Extract job location (if available)
         try:
-            job_data['Location'] = "No data"
-            job_data['Company'] = "No data"
+            job_data['Location'] = "No data"  # Index fix
+            job_data['Company'] = "No data"   # Index fix
             location_element = driver.find_element(By.ID, 'jobad_location')
             location_text = location_element.text.strip()
             location_parts = location_text.split('-')

@@ -1,7 +1,15 @@
 # WEB SCRAPING PROJECT
 
-This project is a web scraping tool that extracts job listings from **[cvbankas.lt](https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw=)**. 
-It utilizes Selenium for web automation and CSVWriter to save the scraped data to a CSV file.
+This project is a web scraping tool designed to extract job listings from **[cvbankas.lt](https://www.cvbankas.lt/?padalinys%5B%5D=88&keyw=)**. 
+The scraping process involves navigating to job listings, extracting relevant data, and then returning to repeat the 
+process for each job on the page. Once all jobs on a page have been processed, the tool proceeds to the next page, 
+continuing until all jobs from all pages have been extracted.
+
+The project employs Selenium for web automation, allowing for dynamic interaction with the website, and utilizes CSVWriter 
+to organize and save the scraped data into a CSV file.
+
+This iterative approach ensures comprehensive data extraction across multiple pages, providing a thorough collection of 
+job listings from the specified website.
 
 ## FEATURES
 
@@ -20,7 +28,7 @@ requirements. Customize the script to suit different filters on the [**cvbankas.
 - Python 3.12.0
 - Requirements listed in [requirements.txt](requirements.txt)
 - Web Browser Driver: Selenium requires a web browser driver. This project uses the Chrome browser, so make sure to 
-have the ChromeDriver version **71.0.3542.0** executable compatible with your Chrome browser version.
+have the ChromeDriver version **71.0.3542.0** executable compatible with your Chrome browser version. It should work with older versions or newer.
 
 ## Usage
 
@@ -54,7 +62,7 @@ file. Locate the following line:
 
 ## CODE STRUCTURE
 
-### Project01_WebScraping
+### Project01_WebScraping _core folder_
 
 * [src](#src)
   * [config.ini](#configini)
@@ -68,7 +76,7 @@ file. Locate the following line:
 * [README.md](#readmemd)
 * [requirements.txt](#requirementstxt)
 
-### src folder
+### src _folder_
 
 #### [config.ini](src/config.ini)
 Configuration file with parameters
@@ -88,7 +96,7 @@ Main script for web scraping
 #### [utils.py](src/utils.py)
 Utility functions (e.g., logging configuration)
 
-### Project01_WebScraping folder
+### Project01_WebScraping _core folder_
 
 #### [.gitignore](.gitignore)
 File to specify files/folders to be ignored by version control

@@ -72,6 +72,7 @@ file. Locate the following line:
   * [scraper.py](#scraperpy)
   * [utils.py](#utilspy)
 * [.gitignore](#gitignore)
+* [config.ini](#configini)
 * [main.log](#mainlog)
 * [README.md](#readmemd)
 * [requirements.txt](#requirementstxt)

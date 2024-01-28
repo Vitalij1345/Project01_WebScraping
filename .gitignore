@@ -4,4 +4,4 @@
 *.log
 
 # Ignore Python cache
-__pycache__/
+src/__pycache__/

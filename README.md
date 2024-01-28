@@ -102,7 +102,7 @@ Utility functions (e.g., logging configuration)
 #### [.gitignore](.gitignore)
 File to specify files/folders to be ignored by version control
 
-#### [main.log](main.log)
+#### <span style="color:#0074cc">main.log</span>
 Log file for storing error logs
 
 #### [README.md](README.md)
